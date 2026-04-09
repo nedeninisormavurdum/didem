@@ -4,98 +4,500 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Didem ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
             position: relative;
         }
 
-        h1 {
-            font-size: 6rem;
-            color: #fff;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2), 0 0 20px #ff4b4b;
-            z-index: 10;
-            animation: pulse 2s infinite ease-in-out;
+        /* Yüzen Hello Kitty arka planı */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hello-kitty-float {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.4;
+            animation: floatKitty 20s infinite ease-in-out;
+        }
+
+        .hello-kitty-float img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255, 182, 193, 0.5));
+        }
+
+        @keyframes floatKitty {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Ana container */
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
             text-align: center;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); text-shadow: 2px 2px 20px rgba(255,255,255,0.8), 0 0 40px #ff4b4b; }
-            100% { transform: scale(1); }
+        /* Kart */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            animation: cardAppear 1.5s ease-out;
+            position: relative;
+            overflow: hidden;
         }
 
-        .heart {
+        .card::before {
+            content: '';
             position: absolute;
-            color: #ff4b4b;
-            animation: float linear infinite;
-            opacity: 0.7;
-            text-shadow: 0 0 10px rgba(255, 75, 75, 0.5);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 182, 193, 0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        @keyframes cardAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Profil resmi alanı */
+        .profile-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #ff6b9d);
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite ease-in-out;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .profile-circle img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 40px rgba(255, 107, 157, 0.7);
+            }
+        }
+
+        /* Başlık */
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #c44569;
+            margin-bottom: 10px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            text-shadow: 2px 2px 4px rgba(196, 69, 105, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mesaj kutusu */
+        .message-box {
+            background: linear-gradient(135deg, #fff5f7, #ffe0e6);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #ff6b9d;
+            animation: fadeInUp 1s ease-out 0.7s both;
+            position: relative;
             z-index: 1;
         }
 
-        @keyframes float {
+        .message-box p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* Hello Kitty kalp animasyonu */
+        .big-heart {
+            width: 80px;
+            height: 80px;
+            animation: heartbeat 1.5s infinite ease-in-out;
+            display: inline-block;
+            margin: 15px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .big-heart img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.6));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.3);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.3);
+            }
+            70% {
+                transform: scale(1);
+            }
+        }
+
+        /* Buton */
+        .love-btn {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 35px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(196, 69, 105, 0.4);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.9s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .love-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(196, 69, 105, 0.6);
+        }
+
+        .love-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Tarih gösterimi */
+        .date-display {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed #ffc0cb;
+            animation: fadeInUp 1s ease-out 1.1s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .date-display span {
+            color: #c44569;
+            font-weight: 600;
+        }
+
+        .date-display p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Gizli mesaj */
+        .hidden-message {
+            display: none;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            animation: popIn 0.5s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes popIn {
             0% {
-                transform: translateY(100vh) translateX(0) scale(0.5) rotate(0deg);
                 opacity: 0;
-            }
-            20% {
-                opacity: 0.8;
-            }
-            80% {
-                opacity: 0.8;
+                transform: scale(0.8);
             }
             100% {
-                transform: translateY(-20vh) translateX(20px) scale(1.5) rotate(360deg);
-                opacity: 0;
+                opacity: 1;
+                transform: scale(1);
             }
+        }
+
+        .hidden-message p {
+            color: #8b4513;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive tasarım */
+        @media (max-width: 600px) {
+            .card {
+                padding: 30px 20px;
+                margin: 10px;
+                border-radius: 25px;
+            }
+
+            .title {
+                font-size: 2.8rem;
+            }
+
+            .profile-circle {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+
+            .message-box {
+                padding: 20px 15px;
+            }
+
+            .message-box p {
+                font-size: 0.95rem;
+            }
+
+            .big-heart {
+                font-size: 3rem;
+            }
+
+            .love-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .title {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .profile-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+        }
+
+        /* Parıldayan yıldızlar */
+        .stars {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Inline Hello Kitty resimleri */
+        .kitty-icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-    <h1>Didem <br> ❤️</h1>
+    <!-- Arka plan kalpleri -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <div class="container">
+        <div class="card">
+            <span class="stars"><img src="png/862377-hellokitty-sparkle.png" alt="Sparkle" style="width: 30px; height: 30px;"></span>
+            
+            <div class="profile-circle">
+                <img src="png/622305-hellokitty-hearteyes.png" alt="Hello Kitty">
+            </div>
+
+            <h1 class="title">Didem</h1>
+            <p class="subtitle">Hayatımın en güzel hikayesi...</p>
+
+            <div class="message-box">
+                <p>
+                    "Yenilecek bir düşman değil, sevilecek bir mucizeymişsin..."
+                </p>
+            </div>
+
+            <div class="big-heart">
+                <img src="png/98536-hellokitty-heart.png" alt="Hello Kitty Heart">
+            </div>
+
+            <button class="love-btn" onclick="showMessage()">Sana Bir Sürprizim Var <img src="png/36673-hellokitty-wink.png" alt="Wink" class="kitty-icon"></button>
+
+            <div class="hidden-message" id="hiddenMessage">
+                <p>
+                    <img src="png/36673-hellokitty-wave.png" alt="Wave" class="kitty-icon"> İlk konuşmamız: 2 Nisan 2026, saat 06:17<br>
+                    <img src="png/622305-hellokitty-hearteyes.png" alt="Heart Eyes" class="kitty-icon"> İlk teklifim: 6 Nisan 2026, saat 21:09<br><br>
+                    <img src="png/449516-hellokitty-hide.png" alt="Hide" class="kitty-icon"> 2.5 yıl düşmanlık, kin değil sonsuz sevgimizi beslemiş<br>
+                    <img src="png/310948-hellokitty-think.png" alt="Think" class="kitty-icon"> Seni tanıyana kadar kadere inanmazdım.<br><br>
+                    <strong>Seni sonsuza dek sevcm! <img src="png/98536-hellokitty-heart.png" alt="Heart" class="kitty-icon"></strong>
+                </p>
+            </div>
+
+            <div class="date-display">
+                <p>İlk konuşmamızdan beri <span id="daysTalk">---</span> gün geçti <img src="png/36673-hellokitty-wave.png" alt="Wave" class="kitty-icon"></p>
+                <p>Birlikte olduğumuz günden beri <span id="days">---</span> gün geçti <img src="png/98536-hellokitty-heart.png" alt="Heart" class="kitty-icon"></p>
+                <p><small>İlk mesaj: 2 Nisan 2026 | Sevgili: 6 Nisan 2026</small></p>
+            </div>
+        </div>
+    </div>
 
     <script>
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
+        // Arka plan Hello Kitty'leri oluştur
+        function createHearts() {
+            const container = document.getElementById('heartsBg');
+            const kittyImages = [
+                'png/98536-hellokitty-heart.png',
+                'png/622305-hellokitty-hearteyes.png',
+                'png/862377-hellokitty-sparkle.png',
+                'png/110201-hellokitty-blush.png',
+                'png/278448-hello-kitty-happy.png',
+                'png/643415-hellokitty-kiss.png',
+                'png/36673-hellokitty-wink.png',
+                'png/605861-hellokitty-laugh.png'
+            ];
             
-            // Randomize heart types among a few options
-            const hearts = ['❤️', '💖', '💕', '💗', '💘'];
-            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-            
-            // Randomize position, size, and animation duration
-            const left = Math.random() * 100;
-            const size = Math.random() * 2.5 + 1; // 1rem to 3.5rem
-            const duration = Math.random() * 4 + 4; // 4s to 8s
-            
-            heart.style.left = left + 'vw';
-            heart.style.fontSize = size + 'rem';
-            heart.style.animationDuration = duration + 's';
-            
-            document.body.appendChild(heart);
-            
-            // Remove heart after animation ends to prevent DOM overload
-            setTimeout(() => {
-                heart.remove();
-            }, duration * 1000);
+            for (let i = 0; i < 15; i++) {
+                const kitty = document.createElement('div');
+                kitty.className = 'hello-kitty-float';
+                const img = document.createElement('img');
+                img.src = kittyImages[Math.floor(Math.random() * kittyImages.length)];
+                kitty.appendChild(img);
+                kitty.style.left = Math.random() * 100 + '%';
+                kitty.style.animationDelay = Math.random() * 20 + 's';
+                kitty.style.animationDuration = (20 + Math.random() * 15) + 's';
+                kitty.style.width = (40 + Math.random() * 30) + 'px';
+                kitty.style.height = (40 + Math.random() * 30) + 'px';
+                container.appendChild(kitty);
+            }
         }
 
-        // Create hearts continuously
-        setInterval(createHeart, 250);
-        
-        // Initial batch of hearts so screen isn't empty at first
-        for(let i = 0; i < 30; i++) {
-            setTimeout(createHeart, Math.random() * 4000);
+        // Gizli mesajı göster
+        function showMessage() {
+            const hiddenMsg = document.getElementById('hiddenMessage');
+            if (hiddenMsg.style.display === 'block') {
+                hiddenMsg.style.display = 'none';
+            } else {
+                hiddenMsg.style.display = 'block';
+            }
         }
+
+        // Gün sayacı
+        function calculateDays() {
+            // İlk konuşma tarihi: 2 Nisan 2026, 06:17
+            const firstTalkDate = new Date(2026, 3, 2, 6, 17); // Nisan = 3 (0-indexed)
+            
+            // Sevgili olma tarihi: 6 Nisan 2026, 21:09
+            const relationshipDate = new Date(2026, 3, 6, 21, 9);
+            
+            const today = new Date();
+            
+            // İlk konuşmadan beri geçen gün
+            const diffTimeTalk = Math.abs(today - firstTalkDate);
+            const diffDaysTalk = Math.floor(diffTimeTalk / (1000 * 60 * 60 * 24));
+            
+            // Sevgili olduktan beri geçen gün
+            const diffTimeRelation = Math.abs(today - relationshipDate);
+            const diffDaysRelation = Math.floor(diffTimeRelation / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('daysTalk').textContent = diffDaysTalk;
+            document.getElementById('days').textContent = diffDaysRelation;
+        }
+
+        // Sayfa yüklendiğinde
+        window.onload = function() {
+            createHearts();
+            calculateDays();
+        };
     </script>
 </body>
 </html>
